@@ -4,6 +4,9 @@ This story would have sounded better if I said that after the conversation, I st
 I used React so that I could go thru hosting it trauma again, HTML and js is too easy.
 As I was short of time and there were deployment issue, I hardcoded all 100 quotes but I plan to connect a free API and scale it up to more authors.
 
+<b>Deployed it here:</b>
+<a href>https://euphonious-cactus-0e81c8.netlify.app/</a>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
