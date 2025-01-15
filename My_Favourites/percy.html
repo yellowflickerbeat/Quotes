@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Content Type Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .generate-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 auto 2rem;
+            display: block;
+        }
+
+        .generate-button:hover {
+            background-color: #45a049;
+        }
+
+        .video-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); /* Ensures responsiveness */
+    gap: 1.5rem; /* Reduce the gap between cards for compactness */
+    justify-content: center; /* Centers the grid items horizontally */
+    width: 100%;
+    padding: 10rem; /* Adds padding around the grid */
+    animation: fadeIn 0.5s ease-out;
+    width: 80%; /* Adjusts the width of the container */
+max-width: 1200px; /* Sets a maximum width for the container */
+margin: 0 auto; 
+}
+
+.video-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow for emphasis */
+    text-align: center; /* Centers text inside the card */
+    max-width: 1000px; /* Limits card width for symmetry */
+    margin: 0 auto; /* Ensures cards are center-aligned in their column */
+}
+
+.video-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9; /* Maintains a consistent video aspect ratio */
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    border-bottom: 70px solid #ddd; /* Adds a subtle separator for style */
+}
+
+.video-info {
+    padding: 1rem; /* Reduces padding for a more compact look */
+    font-size: 0.9rem; /* Slightly smaller font for compactness */
+    line-height: 1.4; /* Improves readability */
+    color: #555; /* Softer text color for info */
+}
+
+
+        /* Quote Content Styles */
+        .quotes-container {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .quote-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            color: #666;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .content-type {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Random Content Generator</h1>
+            <p>Click the button to randomly generate either video or quote content</p>
+        </div>
+        
+        <button class="generate-button" onclick="generateContent()">Generate New Content</button>
+        
+        <div id="contentTypeIndicator" class="content-type"></div>
+        <div id="contentArea"></div>
+    </div>
+
+    <script>
+        const quotes = [
+        {
+            text: "With great power... comes great need to take a nap. Wake me up later",
+            author: "Nico",
+            image: "assets/sleep.jpg"
+        },
+
+        {
+            text: "Deadlines just aren't real to me until I'm staring one in the face.",
+        },
+
+        {
+            text: "Tell the sun and stars hello for me",
+            image: "assets/galaxy.jpg"
+        }
+    ];
+
+        const youtubeVideos = [
+        "RHGdofkPC6g", // Replace with your own YouTube video IDs
+    ];
+
+        const backgroundImages = [
+        'https://source.unsplash.com/random/1920x1080?nature,water',
+        'https://source.unsplash.com/random/1920x1080?nature,forest',
+        'https://source.unsplash.com/random/1920x1080?nature,sky',
+        'https://source.unsplash.com/random/1920x1080?nature,mountain',
+        'https://source.unsplash.com/random/1920x1080?ocean,sunset'
+    ];
+
+    function generateQuotesContent() {
+    return `
+        <div class="quotes-container">
+            ${quotes.map(quote => `
+                <div class="quote-card">
+                    <img src="${quote.image}" alt="Quote Image" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
+                    <p class="quote-text">"${quote.text}"</p>
+                    <p class="quote-author">- ${quote.author}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+
+    function generateVideosContent() {
+    return `
+        <div class="video-container">
+            ${youtubeVideos.map(videoId => `
+                <div class="video-card">
+                    <iframe 
+                        width="800" 
+                        height="400"
+                        margin:0 auto;
+                        left: 50%;
+                        right: 50%;
+                        transform: translate(-50%, -50%);
+                        src="https://www.youtube.com/embed/${videoId}" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+
+    function generateContent() {
+        const contentArea = document.getElementById('contentArea');
+        contentArea.innerHTML = generateQuotesContent();
+        const contentTypeIndicator = document.getElementById('contentTypeIndicator');
+        
+        
+        // Randomly decide between quotes and videos
+        const showQuotes = Math.random() < 0.5;
+        
+        if (showQuotes) {
+            contentTypeIndicator.textContent = "Currently Showing: Quotes";
+            contentArea.innerHTML = generateQuotesContent();
+        } else {
+            contentTypeIndicator.textContent = "Currently Showing: Videos";
+            contentArea.innerHTML = generateVideosContent();
+        }
+
+        // Change the background image
+        const randomBackground = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+        document.body.style.backgroundImage = `url(${randomBackground})`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundPosition = 'center';
+        document.body.style.backgroundAttachment = 'fixed';
+    }
+
+    // Generate initial content
+    generateContent();
+    </script>
+</body>
+</html>
