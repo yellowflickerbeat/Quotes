@@ -1,13 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 
-base_url = "https://valmikiramayan.net/utf8/ayodhya/sarga{s}/ayodhyasans{s}.htm"
-total_chapters = 119
-
+total_chapters = 68
 all_tat_texts = []
 
 for i in range(1, total_chapters + 1):
-    url = base_url.format(s=i)
+    url = f"https://valmikiramayan.net/utf8/sundara/sarga{i}/sundarasans{i}.htm"
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -22,16 +20,16 @@ for i in range(1, total_chapters + 1):
         })
 
         print(f"✅ Chapter {i} - Extracted {len(chapter_texts)} verses.")
-    
+
     except requests.RequestException as e:
         print(f"❌ Failed to fetch Chapter {i}: {e}")
 
-# Save to file
-with open("valmiki_ramayan_ayodhya_kanda.txt", "w", encoding="utf-8") as f:
+# Save output to file
+with open("valmiki_ramayan_sundara_kanda.txt", "w", encoding="utf-8") as f:
     for chapter in all_tat_texts:
         f.write(f"--- Chapter {chapter['chapter']} ---\n")
         for verse in chapter["texts"]:
             f.write(verse + "\n")
         f.write("\n")
 
-print("✅ All 119 chapters processed.")
+print("✅ Finished extracting all 68 chapters of Sundara Kanda.")
